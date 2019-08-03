@@ -9,7 +9,7 @@
       }
       
       body{
-      	background-color: #435700;
+      	background-color: #8a7126;
 background-image: url("https://www.transparenttextures.com/patterns/bright-squares.png");
         background-repeat: repeat;
         color: white;
@@ -48,7 +48,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
       }
       
       hr {
-      	border-color: #97ae43;
+      	border-color: #8a6c13;
       }
       
       .shopButton {
@@ -80,7 +80,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
       }
       
 			#shopTitle, #farmTitle {
-				border-bottom: 1px solid #97ae43;
+				border-bottom: 1px solid #8a6c13;
 			}
       
     </style>
@@ -102,7 +102,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
       <br><br>
        <button id="buyIncubatorButton"class="shopButton">Buy Incubator $100</button> 
       <br><br>
-      <button id="craftEggButton"class="shopButton" style="visibility:hidden;">Craft Incubator Egg (100 eggs)</button> 
+      <button id="craftEggButton"class="shopButton" style="visibility:hidden;">Craft Incubator Egg (100 Eggs)</button> 
       <br><br>
      
       <button id="sellEggButton" class="shopButton">Sell Eggs</button>
@@ -191,11 +191,12 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
        document.getElementById("incubatorEggs").innerHTML = incubatorEggsVal;
        document.getElementById("Eggs").innerHTML = eggVal;  
        incubateButton.innerHTML = "60";
-       setInterval(function() {
+       interval = setInterval(function() {
          if (parseInt(incubateButton.innerHTML) > 1) {
           	 incubateButton.innerHTML = parseInt(incubateButton.innerHTML) - 1;
          } else {
          		// Timer at 0
+           clearInterval(interval);
         		incubateButton.innerHTML = "Incubate Egg!";
            	var random1thru100 = Math.floor(Math.random() * 100) + 1;
            if (t3ChickenChance<=random1thru100){
