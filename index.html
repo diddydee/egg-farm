@@ -13,7 +13,7 @@
       
       body{
       	background-image:url("https://wallpaperplay.com/walls/full/c/2/1/57997.jpg");
-        background-size: 100% 100%;
+        background-size: cover;
         background-repeat: no-repeat;
       }
       
@@ -57,6 +57,7 @@
     <hr>
     <h2> Pen </h2>
      <h3 style="text-align: left"> <img src = "http://pixelartmaker.com/art/20fd19308bba01c.png" id="chickenValImg"><span id="Chicken">0</span></h3>
+    <button id="incubateButton">Incubate Egg!</button> 
   </body>
   
   
@@ -104,6 +105,18 @@
        document.getElementById("Eggs").innerHTML = eggVal;       
      }      
     }
+    
+    incubateButton.onclick = function(){
+     if (hatchableEgg>=1){
+       hatchableEgg -= 1;
+       for (var i=60; i > 0; i--) {
+         setIntervalt(function(){document.getElementById("incubateButton").innerHTML = i  ; }, 1000);
+
+       }
+       document.getElementById("Eggs").innerHTML = eggVal;       
+     }      
+    }
+    
   setInterval(function() {  
       eggVal = eggVal + t1ChickenVal;
     	document.getElementById("Eggs").innerHTML = eggVal;
