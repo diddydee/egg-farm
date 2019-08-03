@@ -98,7 +98,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
     </div>
     <div id="shop">
       <h2 id="shopTitle"> Shop </h2>
-      <button id="buyChickenButton" class="shopButton">Buy Chicken $<span id="t1ChickenPrice">5</span></button>
+      <button id="buyChickenButton" class="shopButton">Buy Basic Chicken $<span id="t1ChickenPrice">5</span></button>
       <br><br>
        <button id="buyIncubatorButton"class="shopButton">Buy Incubator $100</button> 
       <br><br>
@@ -132,6 +132,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
   var t3ChickenChance = 10;
   var incubatorEggsVal = 0;
   var incubatorVal = 0;
+  var incubationDebounce = false;
  	document.getElementById("Coins").innerHTML = coinsVal;
  	document.getElementById("Eggs").innerHTML = eggVal;
     incubateButton = document.getElementById("incubateButton");
@@ -185,40 +186,44 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
       }
     }
     
-    incubateButton.onclick = function(){
-     if (incubatorEggsVal >= 1) {
-       incubatorEggsVal -= 1;
-       document.getElementById("incubatorEggs").innerHTML = incubatorEggsVal;
-       document.getElementById("Eggs").innerHTML = eggVal;  
-       incubateButton.innerHTML = "60";
-       interval = setInterval(function() {
-         if (parseInt(incubateButton.innerHTML) > 1) {
-          	 incubateButton.innerHTML = parseInt(incubateButton.innerHTML) - 1;
-         } else {
-         		// Timer at 0
-           clearInterval(interval);
-        		incubateButton.innerHTML = "Incubate Egg!";
-           	var random1thru100 = Math.floor(Math.random() * 100) + 1;
-           if (t3ChickenChance>=random1thru100){
-             t3ChickenVal += 1;
-             document.getElementById("Chicken3").innerHTML = t3ChickenVal;
-             document.getElementById("chicken3ValImg").style.visibility = "visible";
-
-           }
-            else if (t2ChickenChance>=random1thru100){
-             t2ChickenVal += 1;
-             document.getElementById("Chicken2").innerHTML = t2ChickenVal;
-             document.getElementById("chicken2ValImg").style.visibility = "visible";
-           }
-            else if (t1ChickenChance>=random1thru100){
-             t1ChickenVal += 1;
-             document.getElementById("Chicken").innerHTML = t1ChickenVal;
-
-           }
-         }
-       }, 1000);
-     }      
-    }
+      incubateButton.onclick = function(){
+        if (incubatorEggsVal >= 1 && incubateButton.innerHTML == "Incubate Egg!" ) {
+          incubatorEggsVal -= 1;
+          document.getElementById("incubatorEggs").innerHTML = incubatorEggsVal;
+          document.getElementById("Eggs").innerHTML = eggVal;  
+          incubateButton.innerHTML = "60";
+          interval = setInterval(function() {
+            if (parseInt(incubateButton.innerHTML) > 1) {
+              incubateButton.innerHTML = parseInt(incubateButton.innerHTML) - 1;
+            } 
+            else {
+         	    // Timer at 0
+              incubateButton.innerHTML = "Click to hatch!";
+              clearInterval(interval);
+            }
+          
+          }, 1000);
+        }
+        else if (incubateButton.innerHTML == "Click to hatch!"){
+          var random1thru100 = Math.floor(Math.random() * 100) + 1;
+          if (t3ChickenChance>=random1thru100){
+            t3ChickenVal += 1;
+            document.getElementById("Chicken3").innerHTML = t3ChickenVal;
+            document.getElementById("chicken3ValImg").style.visibility = "visible";
+          }
+          else if (t2ChickenChance>=random1thru100){
+           t2ChickenVal += 1;
+           document.getElementById("Chicken2").innerHTML = t2ChickenVal;
+           document.getElementById("chicken2ValImg").style.visibility = "visible";
+          }
+          else if (t1ChickenChance>=random1thru100){
+            t1ChickenVal += 1;
+            document.getElementById("Chicken").innerHTML = t1ChickenVal;
+          }
+         	incubateButton.innerHTML = "Incubate Egg!";
+        }
+       
+      }
     
   setInterval(function() {  
       eggVal = eggVal + t1ChickenVal;
