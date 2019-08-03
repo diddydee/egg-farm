@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head> 
+    <title>Chicken Game</title>
+    <style>
+      
+      h1,h2,h3{
+      	text-align: center;
+      }
+      .Vals{
+      	text-align: right;
+      }
+      
+      body{
+      	background-image:url("https://thumbs.dreamstime.com/b/combine-harvesting-wheat-plants-field-:;combine-harvesting-wheat-plants-field-123346955.jpg");
+        background-size: 100% 100%;
+      }
+      
+      img{
+      	width: 100px;
+        height 100px;
+      }
+      #eggsValImg{
+     		 width: 30px;
+        height: 30px;
+      }
+      
+      #eggButton{
+      	background: none;
+				border: none;
+        margin: 0 auto;
+				display: block;
+        text-align: center;
+      }
+      
+    </style>
+  
+  </head>
+  
+  <body>
+    <h1>Egg Farm</h1>
+   	<br> 
+    <button id="eggButton"><img src ="https://i.dlpng.com/static/png/338348_thumb.png" ></button>
+    <br>
+    <h3>$<span id="Coins" class="Vals"></span></h3>
+    <h3> <img src = "https://gamepedia.cursecdn.com/minecraft_gamepedia/2/26/Egg.png" id="eggsValImg"><span id="Eggs" class="Vals"></span></h3>
+    <hr>
+    <h2> Shop </h2>
+    <button id="buyChickenButton">Buy Chicken $<span id="t1ChickenPrice">15</span></button>
+    <button id="sellEggButton">Sell Eggs</button> 
+      <button id="craftEggButton">Craft Hatchable Egg (100 egg)</button> 
+    <hr>
+    <h2> Pen </h2>
+     <h3> <img src = "https://images.squarespace-cdn.com/content/v1/59da2486ccc5c54f48ce3c64/1519932983797-VMFDG159HBSNR6Q3VEWN/ke17ZwdGBToddI8pDm48kHUzxcQwd2DgHE3KO6VtZClZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIjemT7TLA_6Za-g0iyqDFHfh0kLGIF9yLJqKkHdIutdkKMshLAGzx4R3EDFOm1kBS/Chicken+stare.jpg" id="eggsValImg"><span id="Chicken"></span>0</h3>
+  </body>
+  
+  
+  
+  
+  <script>
+  var eggVal = 0;
+  var coinsVal = 0;
+  var t1ChickenVal = 0;
+  var hatchableEgg = 0;
+ 	document.getElementById("Coins").innerHTML = coinsVal;
+ 	document.getElementById("Eggs").innerHTML = eggVal;
+    
+    eggButton.onclick = function(){
+      eggVal += 1;
+      document.getElementById("Eggs").innerHTML = eggVal;
+    }
+
+    
+    buyChickenButton.onclick = function(){
+      if (coinsVal>= document.getElementById("t1ChickenPrice").innerHTML
+){
+      	coinsVal -= document.getElementById("t1ChickenPrice").innerHTML;
+        document.getElementById("Coins").innerHTML = coinsVal;
+        t1ChickenVal +=1;
+        document.getElementById("t1ChickenPrice").innerHTML = document.getElementById("t1ChickenPrice").innerHTML * 2;
+      }
+    }
+    
+    sellEggButton.onclick = function(){
+
+    	coinsVal += eggVal * 2;
+      eggVal = 0;
+      document.getElementById("Coins").innerHTML = coinsVal;
+      document.getElementById("Eggs").innerHTML = eggVal;
+      console.log(eggVal);
+    }
+    
+    craftEggButton.onclick = function(){
+     if (eggVal>=100){
+       hatchableEgg += 1;
+       eggVal -= 100;
+       document.getElementById("Eggs").innerHTML = eggVal;       
+     }      
+    }
+  setInterval(function() {  
+      eggVal = eggVal + t1ChickenVal;
+    	document.getElementById("Eggs").innerHTML = eggVal;
+      }, 1000);
+    
+    
+    
+    
+    
+    
+  </script>
+</html>
