@@ -12,7 +12,7 @@
       }
       
       body{
-      	background-image:url("https://thumbs.dreamstime.com/b/combine-harvesting-wheat-plants-field-:;combine-harvesting-wheat-plants-field-123346955.jpg");
+      	background-image:url("https://wallpapercave.com/wp/5fSCm8i.jpg");
         background-size: 100% 100%;
       }
       
@@ -23,6 +23,10 @@
       #eggsValImg{
      		 width: 30px;
         height: 30px;
+      }
+      #chickenValImg{
+      	width: 60px;
+        height: 60px;
       }
       
       #eggButton{
@@ -51,7 +55,7 @@
       <button id="craftEggButton">Craft Hatchable Egg (100 egg)</button> 
     <hr>
     <h2> Pen </h2>
-     <h3> <img src = "https://images.squarespace-cdn.com/content/v1/59da2486ccc5c54f48ce3c64/1519932983797-VMFDG159HBSNR6Q3VEWN/ke17ZwdGBToddI8pDm48kHUzxcQwd2DgHE3KO6VtZClZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIjemT7TLA_6Za-g0iyqDFHfh0kLGIF9yLJqKkHdIutdkKMshLAGzx4R3EDFOm1kBS/Chicken+stare.jpg" id="eggsValImg"><span id="Chicken"></span>0</h3>
+     <h3 style="text-align: left"> <img src = "http://pixelartmaker.com/art/20fd19308bba01c.png" id="chickenValImg"><span id="Chicken"></span>0</h3>
   </body>
   
   
@@ -77,6 +81,8 @@
       	coinsVal -= document.getElementById("t1ChickenPrice").innerHTML;
         document.getElementById("Coins").innerHTML = coinsVal;
         t1ChickenVal +=1;
+        document.getElementById("Chicken").innerHTML = t1ChickenVal;
+
         document.getElementById("t1ChickenPrice").innerHTML = document.getElementById("t1ChickenPrice").innerHTML * 2;
       }
     }
