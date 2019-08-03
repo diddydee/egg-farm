@@ -7,28 +7,31 @@
       h1,h2,h3{
       	text-align: center;
       }
-      .Vals{
-      	text-align: right;
-      }
       
       body{
-      	background-image:url("https://wallpaperplay.com/walls/full/c/2/1/57997.jpg");
-        background-size: cover;
-        background-repeat: no-repeat;
+      	background-color: #435700;
+background-image: url("https://www.transparenttextures.com/patterns/bright-squares.png");
+        background-repeat: repeat;
+        color: white;
+        margin: 0;
+        display:table;
+        width:100%;
       }
       
       img{
       	width: 100px;
-        height 100px;
+        background: none;
       }
-      #eggsValImg{
+      
+      #eggsValImg,#incubatorEggImg{
      		 width: 30px;
         height: 30px;
       }
-      #chickenValImg{
-      	width: 60px;
+     #incubatorImg,#chickenValImg,#chicken2ValImg,#chicken3ValImg{
+     		 width: 60px;
         height: 60px;
-      }
+      } 
+
       
       #eggButton{
       	background: none;
@@ -36,28 +39,83 @@
         margin: 0 auto;
 				display: block;
         text-align: center;
+      	outline:none;
       }
+      
+      #eggButton:active {
+      	outline:none;
+        transform:scale(1.05);
+      }
+      
+      hr {
+      	border-color: #97ae43;
+      }
+      
+      .shopButton {
+      	border: none;
+        padding: 5px;
+        border-radius: 2px;
+        background:#a39500;
+        color: #fff;
+      }
+      
+      #sellEggButton{
+      	background:#4c9e00;
+      }
+      #incubateButton{
+      	border: none;
+        padding: 5px;
+        border-radius: 2px;
+        background:#8f3900;
+        color: #fff;	
+      }
+      #farm {
+      	width:50%;
+        display: inline-block;
+      }
+      
+      #shop {
+      	width:50%;
+        display: inline-block;
+      }
+      
+			#shopTitle, #farmTitle {
+				border-bottom: 1px solid #97ae43;
+			}
       
     </style>
   
   </head>
   
   <body>
-    <h1>Egg Farm</h1>
-   	<br> 
-    <button id="eggButton"><img src ="https://i.dlpng.com/static/png/338348_thumb.png" ></button>
-    <br>
-    <h3>$<span id="Coins" class="Vals"></span></h3>
-    <h3> <img src = "https://gamepedia.cursecdn.com/minecraft_gamepedia/2/26/Egg.png" id="eggsValImg"><span id="Eggs" class="Vals"></span></h3>
+    <div id="farm">
+      <h1 id="farmTitle">Egg Farm</h1>
+      <br> 
+      <button id="eggButton"><img src ="https://yokoent.com/images/egg-png-8.png" ></button>
+      <br>
+      <h3>$<span id="Coins" class="Vals"></span></h3>
+      <h3> <img src = "https://gamepedia.cursecdn.com/minecraft_gamepedia/2/26/Egg.png" id="eggsValImg"><span id="Eggs" class="Vals"></span></h3>
+    </div>
+    <div id="shop">
+      <h2 id="shopTitle"> Shop </h2>
+      <button id="buyChickenButton" class="shopButton">Buy Chicken $<span id="t1ChickenPrice">10</span></button>
+      <br><br>
+       <button id="buyIncubatorButton"class="shopButton">Buy Incubator $100</button> 
+      <br><br>
+      <button id="craftEggButton"class="shopButton" style="visibility:hidden;">Craft Incubator Egg (100 eggs)</button> 
+      <br><br>
+     
+      <button id="sellEggButton" class="shopButton">Sell Eggs</button>
+    </div>
     <hr>
-    <h2> Shop </h2>
-    <button id="buyChickenButton">Buy Chicken $<span id="t1ChickenPrice">15</span></button>
-    <button id="sellEggButton">Sell Eggs</button> 
-      <button id="craftEggButton">Craft Hatchable Egg (100 egg)</button> 
-    <hr>
+    
     <h2> Pen </h2>
-     <h3 style="text-align: left"> <img src = "http://pixelartmaker.com/art/20fd19308bba01c.png" id="chickenValImg"><span id="Chicken">0</span></h3>
-    <button id="incubateButton">Incubate Egg!</button> 
+     <h3 style="text-align: left"> <img src = "http://pixelartmaker.com/art/20fd19308bba01c.png" id="chickenValImg"><span id="Chicken">0</span><img src = " http://pixelartmaker.com/art/1d0752957eab451.png" style="visibility:hidden;" id="chicken2ValImg"><span id="Chicken2"></span><img src = " http://pixelartmaker.com/art/2f46c8b9fe741eb.png" style="visibility:hidden;" id="chicken3ValImg"><span id="Chicken3"></span></h3>
+   
+    <img src = "http://pixelartmaker.com/art/aa054d30b2e9843.png" id="incubatorImg" style="visibility:hidden;"> <img src = "https://steamuserimages-a.akamaihd.net/ugc/955229293027837347/7DAF74B88FBF9D8BA03AE7FDC73980CB9E2AD3E0/" id="incubatorEggImg" style="visibility:hidden;">
+    <span id="incubatorEggs"></span>
+    <br/>
+    <button id="incubateButton" style="visibility:hidden;">Incubate Egg!</button> 
   </body>
   
   
@@ -67,9 +125,16 @@
   var eggVal = 0;
   var coinsVal = 0;
   var t1ChickenVal = 0;
-  var hatchableEgg = 0;
+  var t1ChickenChance = 100;
+  var t2ChickenVal = 0;
+  var t2ChickenChance = 40;
+  var t3ChickenVal = 0;
+  var t3ChickenChance = 10;
+  var incubatorEggsVal = 0;
+  var incubatorVal = 0;
  	document.getElementById("Coins").innerHTML = coinsVal;
  	document.getElementById("Eggs").innerHTML = eggVal;
+    incubateButton = document.getElementById("incubateButton");
     
     eggButton.onclick = function(){
       eggVal += 1;
@@ -90,42 +155,79 @@
     }
     
     sellEggButton.onclick = function(){
-
-    	coinsVal += eggVal * 2;
+    	coinsVal += eggVal;
       eggVal = 0;
       document.getElementById("Coins").innerHTML = coinsVal;
       document.getElementById("Eggs").innerHTML = eggVal;
-      console.log(eggVal);
     }
     
     craftEggButton.onclick = function(){
-     if (eggVal>=100){
-       hatchableEgg += 1;
+    	if (eggVal>=100){
+       incubatorEggsVal += 1;
        eggVal -= 100;
+       document.getElementById("incubatorEggs").innerHTML = incubatorEggsVal;       document.getElementById("incubatorEggImg").style.visibility = "visible";
+        
        document.getElementById("Eggs").innerHTML = eggVal;       
-     }      
+			}      
+    }
+    
+    buyIncubatorButton.onclick = function(){
+      if (coinsVal >= 100){
+        coinsVal -= 100;
+      	incubatorVal += 1;
+        incubateButton.style.visibility = "visible";
+        document.getElementById("incubatorImg").style.visibility = "visible";
+        document.getElementById("craftEggButton").style.visibility = "visible";
+       
+        
+        document.getElementById("Coins").innerHTML = coinsVal;
+      	document.getElementById("buyIncubatorButton").outerHTML = "";
+      }
     }
     
     incubateButton.onclick = function(){
-     if (hatchableEgg>=1){
-       hatchableEgg -= 1;
-       for (var i=60; i > 0; i--) {
-         setIntervalt(function(){document.getElementById("incubateButton").innerHTML = i  ; }, 1000);
+     if (incubatorEggsVal >= 1) {
+       incubatorEggsVal -= 1;
+       document.getElementById("incubatorEggs").innerHTML = incubatorEggsVal;
+       document.getElementById("Eggs").innerHTML = eggVal;  
+       incubateButton.innerHTML = "60";
+       setInterval(function() {
+         if (parseInt(incubateButton.innerHTML) > 1) {
+          	 incubateButton.innerHTML = parseInt(incubateButton.innerHTML) - 1;
+         } else {
+         		// Timer at 0
+        		incubateButton.innerHTML = "Incubate Egg!";
+           	var random1thru100 = Math.floor(Math.random() * 100) + 1;
+           if (t3ChickenChance<=random1thru100){
+             t3ChickenVal += 1;
+             document.getElementById("Chicken3").innerHTML = t3ChickenVal;
+             document.getElementById("chicken3ValImg").style.visibility = "visible";
 
-       }
-       document.getElementById("Eggs").innerHTML = eggVal;       
+           }
+            else if (t2ChickenChance<=random1thru100){
+             t2ChickenVal += 1;
+             document.getElementById("Chicken2").innerHTML = t2ChickenVal;
+             document.getElementById("chicken2ValImg").style.visibility = "visible";
+           }
+            else if (t1ChickenChance<=random1thru100){
+             t1ChickenVal += 1;
+             document.getElementById("Chicken").innerHTML = t1ChickenVal;
+
+           }
+         }
+       }, 1000);
      }      
     }
     
   setInterval(function() {  
       eggVal = eggVal + t1ChickenVal;
     	document.getElementById("Eggs").innerHTML = eggVal;
-      }, 1000);
-    
-    
-    
-    
-    
+  }, 5000);
+    setInterval(function() {  
+      eggVal = eggVal + t2ChickenVal;
+      eggVal = eggVal + t3ChickenVal*5;
+    	document.getElementById("Eggs").innerHTML = eggVal;
+  }, 1000);
     
   </script>
 </html>
