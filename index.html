@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head> 
-    <title>Chicken Game</title>
+    <title>Egg Farm</title>
     <style>
       
       h1,h2,h3{
@@ -98,7 +98,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
     </div>
     <div id="shop">
       <h2 id="shopTitle"> Shop </h2>
-      <button id="buyChickenButton" class="shopButton">Buy Chicken $<span id="t1ChickenPrice">10</span></button>
+      <button id="buyChickenButton" class="shopButton">Buy Chicken $<span id="t1ChickenPrice">5</span></button>
       <br><br>
        <button id="buyIncubatorButton"class="shopButton">Buy Incubator $100</button> 
       <br><br>
@@ -199,18 +199,18 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
            clearInterval(interval);
         		incubateButton.innerHTML = "Incubate Egg!";
            	var random1thru100 = Math.floor(Math.random() * 100) + 1;
-           if (t3ChickenChance<=random1thru100){
+           if (t3ChickenChance>=random1thru100){
              t3ChickenVal += 1;
              document.getElementById("Chicken3").innerHTML = t3ChickenVal;
              document.getElementById("chicken3ValImg").style.visibility = "visible";
 
            }
-            else if (t2ChickenChance<=random1thru100){
+            else if (t2ChickenChance>=random1thru100){
              t2ChickenVal += 1;
              document.getElementById("Chicken2").innerHTML = t2ChickenVal;
              document.getElementById("chicken2ValImg").style.visibility = "visible";
            }
-            else if (t1ChickenChance<=random1thru100){
+            else if (t1ChickenChance>=random1thru100){
              t1ChickenVal += 1;
              document.getElementById("Chicken").innerHTML = t1ChickenVal;
 
