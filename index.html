@@ -110,9 +110,10 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
     <hr>
     
     <h2> Pen </h2>
-     <h3 style="text-align: left"> <img src = "http://pixelartmaker.com/art/20fd19308bba01c.png" id="chickenValImg"><span id="Chicken">0</span><img src = " http://pixelartmaker.com/art/1d0752957eab451.png" style="visibility:hidden;" id="chicken2ValImg"><span id="Chicken2"></span><img src = " http://pixelartmaker.com/art/2f46c8b9fe741eb.png" style="visibility:hidden;" id="chicken3ValImg"><span id="Chicken3"></span></h3>
+     <h3 style="text-align: left"> <img src = "https://art.pixilart.com/e649fc9d28e6ee8.png" id="chickenValImg"><span id="Chicken">0</span><img src = "https://art.pixilart.com/49bcb66b26fd625.png" style="visibility:hidden;" id="chicken2ValImg"><span id="Chicken2"></span><img src = "https://art.pixilart.com/1ce34678884ac49.png" style="visibility:hidden;" id="chicken3ValImg"><span id="Chicken3"></span></h3>
    
-    <img src = "http://pixelartmaker.com/art/aa054d30b2e9843.png" id="incubatorImg" style="visibility:hidden;"> <img src = "https://steamuserimages-a.akamaihd.net/ugc/955229293027837347/7DAF74B88FBF9D8BA03AE7FDC73980CB9E2AD3E0/" id="incubatorEggImg" style="visibility:hidden;">
+    <img src = "http://pixelartmaker.com/art/aa054d30b2e9843.png" id="incubatorImg" style="visibility:hidden;"> 
+    <img src = "https://steamuserimages-a.akamaihd.net/ugc/955229293027837347/7DAF74B88FBF9D8BA03AE7FDC73980CB9E2AD3E0/" id="incubatorEggImg" style="visibility:hidden;">
     <span id="incubatorEggs"></span>
     <br/>
     <button id="incubateButton" style="visibility:hidden;">Incubate Egg!</button> 
@@ -166,7 +167,8 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
     	if (eggVal>=100){
        incubatorEggsVal += 1;
        eggVal -= 100;
-       document.getElementById("incubatorEggs").innerHTML = incubatorEggsVal;       document.getElementById("incubatorEggImg").style.visibility = "visible";
+       document.getElementById("incubatorEggs").innerHTML = incubatorEggsVal;       
+	document.getElementById("incubatorEggImg").style.visibility = "visible";
         
        document.getElementById("Eggs").innerHTML = eggVal;       
 			}      
