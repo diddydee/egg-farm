@@ -28,10 +28,12 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
         height: 30px;
       }
      #incubatorImg,#chickenValImg,#chicken2ValImg,#chicken3ValImg{
-     		 width: 60px;
-        height: 60px;
+     		 width: 65px;
+        height: 75px;
       } 
-
+      #Chicken,#Chicken2,#Chicken3{
+      	font-size: 50px;
+      }
       
       #eggButton{
       	background: none;
@@ -110,7 +112,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
     <hr>
     
     <h2> Pen </h2>
-     <h3 style="text-align: left"> <img src = "https://art.pixilart.com/e649fc9d28e6ee8.png" id="chickenValImg"><span id="Chicken">0</span><img src = "https://art.pixilart.com/49bcb66b26fd625.png" style="visibility:hidden;" id="chicken2ValImg"><span id="Chicken2"></span><img src = "https://art.pixilart.com/1ce34678884ac49.png" style="visibility:hidden;" id="chicken3ValImg"><span id="Chicken3"></span></h3>
+     <h3 style="text-align: left"> <img src = "https://art.pixilart.com/85cda6a44e65f23.png" id="chickenValImg"><span id="Chicken">0</span><img src = "hhttps://art.pixilart.com/8ca94b7545b1105.png" style="visibility:hidden;" id="chicken2ValImg"><span id="Chicken2"></span><img src = "https://art.pixilart.com/6e2b15bba142b77.png" style="visibility:hidden;" id="chicken3ValImg"><span id="Chicken3"></span></h3>
    
     <img src = "http://pixelartmaker.com/art/aa054d30b2e9843.png" id="incubatorImg" style="visibility:hidden;"> 
     <img src = "https://steamuserimages-a.akamaihd.net/ugc/955229293027837347/7DAF74B88FBF9D8BA03AE7FDC73980CB9E2AD3E0/" id="incubatorEggImg" style="visibility:hidden;">
@@ -142,7 +144,6 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
       eggVal += 1;
       document.getElementById("Eggs").innerHTML = eggVal;
     }
-
     
     buyChickenButton.onclick = function(){
       if (coinsVal>= document.getElementById("t1ChickenPrice").innerHTML
@@ -151,7 +152,6 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
         document.getElementById("Coins").innerHTML = coinsVal;
         t1ChickenVal +=1;
         document.getElementById("Chicken").innerHTML = t1ChickenVal;
-
         document.getElementById("t1ChickenPrice").innerHTML = document.getElementById("t1ChickenPrice").innerHTML * 2;
       }
     }
