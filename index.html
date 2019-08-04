@@ -18,6 +18,13 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
         width:100%;
       }
       
+      .penDiv {
+        border-top: 2px solid #fff;
+        border-bottom: 2px solid #fff;
+        background-image: url("https://www.transparenttextures.com/patterns/bright-squares.png");
+      	background-color: #2a742a;
+      }
+      
       img{
       	width: 100px;
         background: none;
@@ -27,15 +34,16 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
      		 width: 30px;
         height: 30px;
       }
+      
      #incubatorImg,#chickenValImg,#chicken2ValImg,#chicken3ValImg{
      		 width: 85px;
         height: 95px;
         margin: left;
       } 
+      
       #Chicken,#Chicken2,#Chicken3{
       	font-size: 50px;
         margin: left;
-        
       }
       
       #eggButton{
@@ -51,10 +59,6 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
       #eggButton:active {
       	outline:none;
         transform:scale(1.05);
-      }
-      
-      hr {
-      	border: 1px solid #8a6c13;
       }
       
       .shopButton {
@@ -89,7 +93,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
       }
       
 			#shopTitle, #farmTitle {
-				border-bottom: 1px solid #8a6c13;
+				border-bottom: 2px solid #fff;
 			}
       
     </style>
@@ -102,7 +106,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
       <button id="eggButton"><img src ="https://yokoent.com/images/egg-png-8.png" ></button>
       <br>
       <h3>$<span id="Coins" class="Vals"></span></h3>
-      <h3> <img src = "hhttps://steamuserimages-a.akamaihd.net/ugc/955229293027837347/7DAF74B88FBF9D8BA03AE7FDC73980CB9E2AD3E0/" id="incubatorEggImg" id="eggsValImg"><span id="Eggs" class="Vals"></span></h3>
+      <h3> <img src = "https://steamuserimages-a.akamaihd.net/ugc/955229293027837347/7DAF74B88FBF9D8BA03AE7FDC73980CB9E2AD3E0/" id="incubatorEggImg" id="eggsValImg"><span id="Eggs" class="Vals"></span></h3>
     </div>
     <div id="shop">
       <h2 id="shopTitle"> Shop </h2>
@@ -115,7 +119,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
      
       <button id="sellEggButton" class="shopButton">Sell Eggs</button>
     </div>
-    <hr>
+    <div class="penDiv">
     
     <h2> Pen </h2>
      <h3 style="text-align: left; margin-left: 50px;"> <img src = "https://art.pixilart.com/85cda6a44e65f23.png" id="chickenValImg"><span id="Chicken">0</span><img src = "https://art.pixilart.com/8ca94b7545b1105.png" style="visibility:hidden;" id="chicken2ValImg"><span id="Chicken2"></span><img src = "https://art.pixilart.com/6e2b15bba142b77.png" style="visibility:hidden;" id="chicken3ValImg"><span id="Chicken3"></span></h3>
@@ -125,6 +129,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
     <span id="incubatorEggs"></span>
     <br/>
     <button id="incubateButton" style="visibility:hidden;">Incubate Egg!</button> 
+    </div>
   </body>
   
   
