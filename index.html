@@ -4,7 +4,7 @@
     <title>Egg Farm</title>
     <style>
       
-      h1,h2,h3{
+      h1,h2,h3,h4{
       	text-align: center;
       }
       
@@ -115,7 +115,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
       <br>
       <h3>$<span id="Coins" class="Vals"></span></h3>
       <h3> <img src = "https://steamuserimages-a.akamaihd.net/ugc/955229293027837347/7DAF74B88FBF9D8BA03AE7FDC73980CB9E2AD3E0/" id="eggsValImg"><span id="Eggs" class="Vals"></span></h3>
-      <h3><span id="feedText"></span></h3>
+      
     </div>
     <div id="shop">
       <h2 id="shopTitle"> Shop </h2>
@@ -136,6 +136,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
     <div class="penDiv">
     
     <h2> Pen </h2>
+	<h4><span id="feedText"></span></h4>
      <h3 style="text-align: left; margin-left: 50px;"> <img src = "https://art.pixilart.com/85cda6a44e65f23.png" id="chickenValImg"><span id="Chicken">0</span><img src = "https://art.pixilart.com/8ca94b7545b1105.png" style="visibility:hidden;" id="chicken2ValImg"><span id="Chicken2"></span><img src = "https://art.pixilart.com/6e2b15bba142b77.png" style="visibility:hidden;" id="chicken3ValImg"><span id="Chicken3"></span></h3>
       
       <h3 style="text-align: left; margin-left: 50px;">   <img src = "https://art.pixilart.com/773d80488d11d7f.png" id="chickenfeedImg" >
@@ -145,7 +146,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
         <span id="incubatorEggs"></span></h3>
    
   <button id="feedButton" style="visibility:hidden;margin-left: 50px;">Use Chicken Feed!</button>
-    <button id="incubateButton" style="visibility:hidden;margin-left: 50px;">Incubate Egg!</button> 
+    <button id="incubateButton" style="visibility:hidden;margin-left: 65px;">Incubate Egg!</button> 
     <br>
     <br>
      
@@ -215,6 +216,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
       if (coinsVal >- 10){
         coinsVal -= 10;
         chickenfeedVal += 1;
+        document.getElementById("Coins").innerHTML = coinsVal;
         document.getElementById("chickenfeed").innerHTML = chickenfeedVal;
         document.getElementById("feedButton").style.visibility = "visible";
       }
@@ -286,7 +288,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
     setInterval(function() {
             if (feedTime > 1) {
               feedTime = feedTime - 1;
-              document.getElementById("feedText").innerHTML = " (2x for " + feedTime + " seconds)"; 
+              document.getElementById("feedText").innerHTML = " (2x from Pen for " + feedTime + " seconds)"; 
             } 
             else {
          	    // Timer at 0
