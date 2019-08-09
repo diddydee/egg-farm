@@ -152,7 +152,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
      
     </div>
     <footer>
-      Version 0.11
+      Version 0.115
     </footer>
   </body>
   
@@ -180,7 +180,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
     
     eggButton.onclick = function(){
       eggVal += 1;
-      document.getElementById("Eggs").innerHTML = eggVal;
+      document.getElementById("Eggs").innerHTML = Math.floor(eggVal);
     }
     
     buyChickenButton.onclick = function(){
@@ -195,7 +195,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
     }
     
     sellEggButton.onclick = function(){
-    	coinsVal += eggVal;
+    	coinsVal += Math.floor(eggVal);
       eggVal = 0;
       document.getElementById("Coins").innerHTML = coinsVal;
       document.getElementById("Eggs").innerHTML = eggVal;
@@ -208,12 +208,12 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
        document.getElementById("incubatorEggs").innerHTML = incubatorEggsVal;       	 document.getElementById("incubatorEggs").style.visibility = "visible";
 	document.getElementById("incubatorEggImg").style.visibility = "visible";
         
-       document.getElementById("Eggs").innerHTML = eggVal;       
+       document.getElementById("Eggs").innerHTML = Math.floor(eggVal);       
 			}      
     }
     
     buyFeed1Button.onclick = function(){
-      if (coinsVal >- 10){
+      if (coinsVal >= 10){
         coinsVal -= 10;
         chickenfeedVal += 1;
         document.getElementById("Coins").innerHTML = coinsVal;
@@ -241,7 +241,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
       chickenfeedVal -= 1;
       document.getElementById("chickenfeed").innerHTML = chickenfeedVal;
       feedBonus = 2;
-       feedTime += 60;
+       feedTime += 30;
       
      }
     }
@@ -299,14 +299,12 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
           }, 1000);  
       
       
-  setInterval(function() {  
-      eggVal = eggVal + (t1ChickenVal*feedBonus);
-    	document.getElementById("Eggs").innerHTML = eggVal;
-  }, 5000);
+
     setInterval(function() {  
-      eggVal = eggVal + (t2ChickenVal*feedBonus);
+      eggVal = eggVal + (t1ChickenVal*.2*feedBonus);
+      eggVal = eggVal + (t2ChickenVal*1*feedBonus);
       eggVal = eggVal + (t3ChickenVal*5*feedBonus);
-    	document.getElementById("Eggs").innerHTML = eggVal;
+    	document.getElementById("Eggs").innerHTML = Math.floor(eggVal);
   }, 1000);
     
   </script>
