@@ -41,7 +41,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
         margin: left;
       } 
       
-      #Chicken,#Chicken2,#Chicken3{
+      #Chicken,#Chicken2,#Chicken3,#chickenfeed{
       	font-size: 50px;
         margin: left;
       }
@@ -74,7 +74,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
       	background:#4c9e00;
         cursor:pointer;
       }
-      #incubateButton{
+      #incubateButton,#feedButton{
       	border: none;
         padding: 5px;
         border-radius: 2px;
@@ -114,13 +114,16 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
       <button id="eggButton"><img src ="https://yokoent.com/images/egg-png-8.png" ></button>
       <br>
       <h3>$<span id="Coins" class="Vals"></span></h3>
-      <h3> <img src = "https://steamuserimages-a.akamaihd.net/ugc/955229293027837347/7DAF74B88FBF9D8BA03AE7FDC73980CB9E2AD3E0/" id="incubatorEggImg" id="eggsValImg"><span id="Eggs" class="Vals"></span></h3>
+      <h3> <img src = "https://steamuserimages-a.akamaihd.net/ugc/955229293027837347/7DAF74B88FBF9D8BA03AE7FDC73980CB9E2AD3E0/" id="eggsValImg"><span id="Eggs" class="Vals"></span></h3>
+      <h3><span id="feedText"></span></h3>
     </div>
     <div id="shop">
       <h2 id="shopTitle"> Shop </h2>
       <button id="sellEggButton" class="shopButton">Sell Eggs</button>
       <br><br>
       <button id="buyChickenButton" class="shopButton">Buy Basic Chicken $<span id="t1ChickenPrice">5</span></button>
+      <br><br>
+       <button id="buyFeed1Button"class="shopButton">Buy Chicken Feed $10</button> 
       <br><br>
        <button id="buyIncubatorButton"class="shopButton">Buy Incubator $100</button> 
       <br><br>
@@ -134,15 +137,18 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
     
     <h2> Pen </h2>
      <h3 style="text-align: left; margin-left: 50px;"> <img src = "https://art.pixilart.com/85cda6a44e65f23.png" id="chickenValImg"><span id="Chicken">0</span><img src = "https://art.pixilart.com/8ca94b7545b1105.png" style="visibility:hidden;" id="chicken2ValImg"><span id="Chicken2"></span><img src = "https://art.pixilart.com/6e2b15bba142b77.png" style="visibility:hidden;" id="chicken3ValImg"><span id="Chicken3"></span></h3>
-   
-    <img src = "http://pixelartmaker.com/art/aa054d30b2e9843.png" id="incubatorImg" style="visibility:hidden; margin-left: 50px;"> 
+      
+      <h3 style="text-align: left; margin-left: 50px;">   <img src = "https://art.pixilart.com/773d80488d11d7f.png" id="chickenfeedImg" >
+    <span id="chickenfeed">0</span>
+    <img src = "http://pixelartmaker.com/art/aa054d30b2e9843.png" id="incubatorImg" style="visibility:hidden;margin-left: 50px; "> 
     <img src = "https://steamuserimages-a.akamaihd.net/ugc/955229293027837347/7DAF74B88FBF9D8BA03AE7FDC73980CB9E2AD3E0/" id="incubatorEggImg" style="visibility:hidden;">
-    <span id="incubatorEggs"></span>
-    <br/>
-
+        <span id="incubatorEggs"></span></h3>
+   
+  <button id="feedButton" style="visibility:hidden;margin-left: 50px;">Use Chicken Feed!</button>
     <button id="incubateButton" style="visibility:hidden;margin-left: 50px;">Incubate Egg!</button> 
     <br>
     <br>
+     
     </div>
     <footer>
       Version 0.1
@@ -164,6 +170,9 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
   var incubatorEggsVal = 0;
   var incubatorVal = 0;
   var incubationDebounce = false;
+  var chickenfeedVal = 0;
+  var feedTime = 0;
+    
  	document.getElementById("Coins").innerHTML = coinsVal;
  	document.getElementById("Eggs").innerHTML = eggVal;
     incubateButton = document.getElementById("incubateButton");
@@ -195,11 +204,20 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
     	if (eggVal>=100){
        incubatorEggsVal += 1;
        eggVal -= 100;
-       document.getElementById("incubatorEggs").innerHTML = incubatorEggsVal;       
+       document.getElementById("incubatorEggs").innerHTML = incubatorEggsVal;       	 document.getElementById("incubatorEggs").style.visibility = "visible";
 	document.getElementById("incubatorEggImg").style.visibility = "visible";
         
        document.getElementById("Eggs").innerHTML = eggVal;       
 			}      
+    }
+    
+    buyFeed1Button.onclick = function(){
+      if (coinsVal >- 10){
+        coinsVal -= 10;
+        chickenfeedVal += 1;
+        document.getElementById("chickenfeed").innerHTML = chickenfeedVal;
+        document.getElementById("feedButton").style.visibility = "visible";
+      }
     }
     
     buyIncubatorButton.onclick = function(){
@@ -209,11 +227,21 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
         incubateButton.style.visibility = "visible";
         document.getElementById("incubatorImg").style.visibility = "visible";
         document.getElementById("craftEggButton").style.visibility = "visible";
-       
+        document.getElementById("incubatorEggImg").style.visibility = "visible";
         
         document.getElementById("Coins").innerHTML = coinsVal;
       	document.getElementById("buyIncubatorButton").outerHTML = "";
       }
+    }
+    
+    feedButton.onclick = function(){
+     if (chickenfeedVal > 0){
+      chickenfeedVal -= 1;
+      document.getElementById("chickenfeed").innerHTML = chickenfeedVal;
+      feedBonus = 2;
+       feedTime += 60;
+      
+     }
     }
     
       incubateButton.onclick = function(){
@@ -254,14 +282,28 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
         }
        
       }
-    
+ 
+    setInterval(function() {
+            if (feedTime > 1) {
+              feedTime = feedTime - 1;
+              document.getElementById("feedText").innerHTML = " (2x for " + feedTime + " seconds)"; 
+            } 
+            else {
+         	    // Timer at 0
+              feedBonus = 1;
+              document.getElementById("feedText").innerHTML = "";
+            }
+          
+          }, 1000);  
+      
+      
   setInterval(function() {  
-      eggVal = eggVal + t1ChickenVal;
+      eggVal = eggVal + (t1ChickenVal*feedBonus);
     	document.getElementById("Eggs").innerHTML = eggVal;
   }, 5000);
     setInterval(function() {  
-      eggVal = eggVal + t2ChickenVal;
-      eggVal = eggVal + t3ChickenVal*5;
+      eggVal = eggVal + (t2ChickenVal*feedBonus);
+      eggVal = eggVal + (t3ChickenVal*5*feedBonus);
     	document.getElementById("Eggs").innerHTML = eggVal;
   }, 1000);
     
