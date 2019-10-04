@@ -10,7 +10,7 @@
       
       body{
       	background-color: #8a7126;
-background-image: url("https://www.transparenttextures.com/patterns/bright-squares.png");
+        background-image: url("https://www.transparenttextures.com/patterns/bright-squares.png");
         background-repeat: repeat;
         color: white;
         margin: 0;
@@ -36,7 +36,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
       }
       
      #incubatorImg,#chickenValImg,#chicken2ValImg,#chicken3ValImg{
-     		 width: 85px;
+     		width: 85px;
         height: 95px;
         margin: left;
       } 
@@ -114,7 +114,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
       <button id="eggButton"><img src ="https://yokoent.com/images/egg-png-8.png" ></button>
       <br>
       <h3>$<span id="Coins" class="Vals"></span></h3>
-      <h3> <img src = "https://steamuserimages-a.akamaihd.net/ugc/955229293027837347/7DAF74B88FBF9D8BA03AE7FDC73980CB9E2AD3E0/" id="eggsValImg"><span id="Eggs" class="Vals"></span></h3>
+      <h3> <img src = "https://steamuserimages-a.akamaihd.net/ugc/955229293027837347/7DAF74B88FBF9D8BA03AE7FDC73980CB9E2AD3E0/" id="eggsValImg"><span id="Eggs"></span></h3>
       
     </div>
     <div id="shop">
@@ -152,7 +152,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
      
     </div>
     <footer>
-      Version 0.115
+      Version 0.12
     </footer>
   </body>
   
@@ -173,14 +173,14 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
   var incubationDebounce = false;
   var chickenfeedVal = 0;
   var feedTime = 0;
-    
+  var tempEggVal = 0;
+  var feedBonus = 1;  
  	document.getElementById("Coins").innerHTML = coinsVal;
  	document.getElementById("Eggs").innerHTML = eggVal;
     incubateButton = document.getElementById("incubateButton");
     
     eggButton.onclick = function(){
-      eggVal += 1;
-      document.getElementById("Eggs").innerHTML = Math.floor(eggVal);
+      tempEggVal += 100;
     }
     
     buyChickenButton.onclick = function(){
@@ -195,7 +195,7 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
     }
     
     sellEggButton.onclick = function(){
-    	coinsVal += Math.floor(eggVal);
+    	coinsVal += eggVal;
       eggVal = 0;
       document.getElementById("Coins").innerHTML = coinsVal;
       document.getElementById("Eggs").innerHTML = eggVal;
@@ -297,15 +297,19 @@ background-image: url("https://www.transparenttextures.com/patterns/bright-squar
             }
           
           }, 1000);  
-      
-      
+    		
+    
+     setInterval(function(){
+      tempEggVal = tempEggVal + (t1ChickenVal*.002*feedBonus);
+      tempEggVal = tempEggVal + (t2ChickenVal*.01*feedBonus);
+      tempEggVal = tempEggVal + (t3ChickenVal*.05*feedBonus);
+    }, 10); 
 
-    setInterval(function() {  
-      eggVal = eggVal + (t1ChickenVal*.2*feedBonus);
-      eggVal = eggVal + (t2ChickenVal*1*feedBonus);
-      eggVal = eggVal + (t3ChickenVal*5*feedBonus);
-    	document.getElementById("Eggs").innerHTML = Math.floor(eggVal);
-  }, 1000);
+    setInterval(function(){
+      eggVal += (tempEggVal - (tempEggVal % 1));
+      tempEggVal = (tempEggVal % 1);
+      document.getElementById("Eggs").innerHTML = eggVal;
+    },10);
     
   </script>
 </html>
